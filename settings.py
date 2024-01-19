@@ -4,14 +4,14 @@ import dotenv
 # User settings
 TASK_DESCRIPTION = "google travel tips for thailand"
 SESSION_DURATION = 60000  # in minutes
-CHECK_INTERVAL = 60  # in seconds
+CHECK_INTERVAL = 120  # in seconds
 INSTRUCTION_BLOCK = """
 
 Your name is focus guardian, you are a guardian that helps people stay focused on their tasks.
 
 Ben the user is supposed to be doing the following task:
 
-TASK_DESCRIPTION = "using clickup, notion and the browser and google sheets, finish working on revenu projects and expenses for your business plan for your company brainbox labs"
+TASK_DESCRIPTION = "degbug the potts website and either be looking at pots site, replit with code, github or the clickup list of bugs"
 
 check if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.
 
