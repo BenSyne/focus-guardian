@@ -1,0 +1,347 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "collections",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "collections",
+        "description": "collections",
+        "detail": "collections",
+        "documentation": {}
+    },
+    {
+        "label": "HISTORY_LIMIT",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "TASK_DESCRIPTION",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "SESSION_DURATION",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "CHECK_INTERVAL",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTRUCTION_BLOCK",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "HISTORY_LIMIT",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "OPENAI_API_KEY",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "SCREENSHOT_PATH",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "image_to_base64",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI_API",
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "isExtraImport": true,
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "History",
+        "importPath": "history",
+        "description": "history",
+        "isExtraImport": true,
+        "detail": "history",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "provide_audio_feedback",
+        "importPath": "audio_feedback",
+        "description": "audio_feedback",
+        "isExtraImport": true,
+        "detail": "audio_feedback",
+        "documentation": {}
+    },
+    {
+        "label": "base64",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "base64",
+        "description": "base64",
+        "detail": "base64",
+        "documentation": {}
+    },
+    {
+        "label": "requests",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "requests",
+        "description": "requests",
+        "detail": "requests",
+        "documentation": {}
+    },
+    {
+        "label": "dotenv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "pyautogui",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pyautogui",
+        "description": "pyautogui",
+        "detail": "pyautogui",
+        "documentation": {}
+    },
+    {
+        "label": "provide_audio_feedback",
+        "kind": 2,
+        "importPath": "audio_feedback",
+        "description": "audio_feedback",
+        "peekOfCode": "def provide_audio_feedback(message):\n    \"\"\"\n    Function to provide audio feedback using the Mac's 'say' command.\n    \"\"\"\n    try:\n        # Execute the 'say' command with the message\n        os.system(f'say {message}')\n    except Exception as e:\n        print(f\"Error while trying to provide audio feedback: {str(e)}\")\nif __name__ == \"__main__\":",
+        "detail": "audio_feedback",
+        "documentation": {}
+    },
+    {
+        "label": "History",
+        "kind": 6,
+        "importPath": "history",
+        "description": "history",
+        "peekOfCode": "class History:\n    def __init__(self):\n        self.history = collections.deque(maxlen=HISTORY_LIMIT)\n    def add_to_history(self, interaction):\n        self.history.append(interaction)\n    def get_history(self):\n        return list(self.history)",
+        "detail": "history",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def main():\n    # Initialize OpenAI API\n    openai_api = OpenAI_API()\n    # Initialize history\n    history = History()\n    # Calculate end time\n    end_time = datetime.now() + timedelta(minutes=SESSION_DURATION)\n    # Main loop\n    while datetime.now() < end_time:\n        # Capture screenshot",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI_API",
+        "kind": 6,
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "peekOfCode": "class OpenAI_API:\n    def __init__(self):\n        self.headers = {\n            'Content-Type': 'application/json',\n            'Authorization': f'Bearer {OPENAI_API_KEY}'\n        }\n    @staticmethod\n    def encode_image(image_path):\n        with open(image_path, 'rb') as image_file:\n            return base64.b64encode(image_file.read()).decode('utf-8')",
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "peekOfCode": "def main():\n    # Initialize the OpenAI API client\n    client = OpenAI_API()\n    # Define the instruction block and the image path\n    instruction_block = \"What’s in this image?\"\n    image_path = \"screenshot.png\"\n    # Define the history (empty in this example)\n    history = []\n    # Send the request to the OpenAI API\n    response = client.send_request(instruction_block, image_path, history)",
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "kind": 2,
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "peekOfCode": "def take_screenshot(filename):\n    \"\"\"\n    Function to take a screenshot using the Mac's 'screencapture' command.\n    \"\"\"\n    try:\n        # Execute the 'screencapture' command with the filename\n        os.system(f'screencapture {filename}')\n    except Exception as e:\n        print(f\"Error while trying to take screenshot: {str(e)}\")\ndef image_to_base64(filename):",
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "image_to_base64",
+        "kind": 2,
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "peekOfCode": "def image_to_base64(filename):\n    \"\"\"\n    Function to convert an image file to a base64 string.\n    \"\"\"\n    with open(filename, \"rb\") as image_file:\n        return base64.b64encode(image_file.read()).decode('utf-8')\nif __name__ == \"__main__\":\n    # Test the functions\n    take_screenshot(\"screenshot.png\")\n    screenshot_base64 = image_to_base64(\"screenshot.png\")",
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "capture_screenshot",
+        "kind": 2,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "def capture_screenshot(filename):\n    \"\"\"\n    Function to capture a screenshot and save it to the specified path.\n    \"\"\"\n    # Ensure the screenshot directory exists\n    if not os.path.exists(SCREENSHOT_PATH):\n        os.makedirs(SCREENSHOT_PATH)\n    # Capture the screenshot\n    screenshot = pyautogui.screenshot()\n    # Save the screenshot",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "capture_screenshots",
+        "kind": 2,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "def capture_screenshots(interval, duration):\n    \"\"\"\n    Function to capture screenshots at regular intervals for a specified duration.\n    \"\"\"\n    # Calculate the number of screenshots to take\n    num_screenshots = int(duration / interval)\n    # Loop for the specified number of screenshots\n    for i in range(num_screenshots):\n        # Capture a screenshot\n        capture_screenshot(f\"screenshot_{i+1}.png\")",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "TASK_DESCRIPTION",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "TASK_DESCRIPTION = \"Your task description here\"\nSESSION_DURATION = 15  # in minutes\nCHECK_INTERVAL = 5  # in seconds\nINSTRUCTION_BLOCK = \"Your instruction block here\"\n# History settings\nHISTORY_LIMIT = 5\n# OpenAI API settings\nOPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nOPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "SESSION_DURATION",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "SESSION_DURATION = 15  # in minutes\nCHECK_INTERVAL = 5  # in seconds\nINSTRUCTION_BLOCK = \"Your instruction block here\"\n# History settings\nHISTORY_LIMIT = 5\n# OpenAI API settings\nOPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nOPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings\nSCREENSHOT_PATH = \"./screenshots/\"",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "CHECK_INTERVAL",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "CHECK_INTERVAL = 5  # in seconds\nINSTRUCTION_BLOCK = \"Your instruction block here\"\n# History settings\nHISTORY_LIMIT = 5\n# OpenAI API settings\nOPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nOPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings\nSCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTRUCTION_BLOCK",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "INSTRUCTION_BLOCK = \"Your instruction block here\"\n# History settings\nHISTORY_LIMIT = 5\n# OpenAI API settings\nOPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nOPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings\nSCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings\nimport pyautogui",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "HISTORY_LIMIT",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "HISTORY_LIMIT = 5\n# OpenAI API settings\nOPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nOPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings\nSCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings\nimport pyautogui\nimport os\nimport time",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "OPENAI_API_KEY",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nOPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings\nSCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings\nimport pyautogui\nimport os\nimport time\nfrom settings import SCREENSHOT_PATH\ndef capture_screenshot(filename):",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "OPENAI_API_ENDPOINT",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "OPENAI_API_ENDPOINT = \"https://api.openai.com/v1/engines/davinci-codex/completions\"\n# Screenshot settings\nSCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings\nimport pyautogui\nimport os\nimport time\nfrom settings import SCREENSHOT_PATH\ndef capture_screenshot(filename):\n    \"\"\"",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "SCREENSHOT_PATH",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "SCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings\nimport pyautogui\nimport os\nimport time\nfrom settings import SCREENSHOT_PATH\ndef capture_screenshot(filename):\n    \"\"\"\n    Function to capture a screenshot and save it to the specified path.\n    \"\"\"",
+        "detail": "settings",
+        "documentation": {}
+    }
+]

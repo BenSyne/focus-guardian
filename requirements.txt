@@ -1,0 +1,8 @@
+# Python libraries
+pyautogui
+requests
+subprocess32
+
+# OpenAI library
+openai
+<FINAL_CODE>
