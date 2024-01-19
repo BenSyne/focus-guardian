@@ -5,6 +5,8 @@ def provide_audio_feedback(message):
     Function to provide audio feedback using the Mac's 'say' command.
     """
     try:
+        # Replace single quotes in the message with escaped single quotes
+        message = message.replace("'", "\\'")
         # Execute the 'say' command with the message
         os.system(f'say {message}')
     except Exception as e:
