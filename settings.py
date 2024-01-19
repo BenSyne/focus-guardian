@@ -5,6 +5,10 @@ import dotenv
 TASK_DESCRIPTION = "google travel tips for thailand"
 SESSION_DURATION = 60000  # in minutes
 CHECK_INTERVAL = 120  # in seconds
+# Image source settings
+USE_SCREENSHOT = True
+USE_CAMERA_IMAGE = True
+
 INSTRUCTION_BLOCK = """
 
 Your name is focus guardian, you are a guardian that helps people stay focused on their tasks.
