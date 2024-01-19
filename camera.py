@@ -1,15 +1,16 @@
 import cv2
+import time
 
 def capture_camera_image(filename):
-    """
-    Function to capture an image from the camera.
-    """
     cap = cv2.VideoCapture(0)
-
-    # Check if the webcam is opened correctly
     if not cap.isOpened():
         raise IOError("Cannot open webcam")
 
+    time.sleep(2)  # Warm-up period for the camera to adjust to lighting conditions
+
     ret, frame = cap.read()
+    if not ret:
+        raise IOError("Failed to capture image from camera")
+
     cv2.imwrite(filename, frame)
     cap.release()
