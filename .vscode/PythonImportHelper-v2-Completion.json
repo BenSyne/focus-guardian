@@ -57,6 +57,30 @@
         "documentation": {}
     },
     {
+        "label": "OpenAI_API",
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "isExtraImport": true,
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "image_to_base64",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
         "label": "take_screenshot",
         "importPath": "screenshot",
         "description": "screenshot",
@@ -86,6 +110,14 @@
         "description": "screenshot",
         "isExtraImport": true,
         "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "capture_camera_image",
+        "importPath": "camera",
+        "description": "camera",
+        "isExtraImport": true,
+        "detail": "camera",
         "documentation": {}
     },
     {
@@ -315,6 +347,62 @@
         "documentation": {}
     },
     {
+        "label": "Flask",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "render_template",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "request",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "redirect",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "url_for",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "flash",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
+        "label": "jsonify",
+        "importPath": "flask",
+        "description": "flask",
+        "isExtraImport": true,
+        "detail": "flask",
+        "documentation": {}
+    },
+    {
         "label": "App",
         "kind": 6,
         "importPath": "app",
@@ -528,6 +616,123 @@
         "description": "setup",
         "peekOfCode": "OPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},",
         "detail": "setup",
+        "documentation": {}
+    },
+    {
+        "label": "perform_task",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def perform_task(task, use_screenshots, use_photos):\n    screenshot_filename = None\n    camera_image_filename = None\n    if use_screenshots:\n        screenshot_filename = \"screenshot.png\"\n        take_screenshot(screenshot_filename)\n    if use_photos:\n        camera_image_filename = \"camera_image.png\"\n        capture_camera_image(camera_image_filename)\n    print(\"Sending request to OpenAI API...\")",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "provide_audio_feedback",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def provide_audio_feedback(message):\n    \"\"\"\n    Function to provide audio feedback using the system's text-to-speech functionality.\n    \"\"\"\n    try:\n        # Replace problematic characters in the message\n        message = message.replace(\"'\", \"\\\\'\").replace(\"(\", \"\\\\(\").replace(\")\", \"\\\\)\")\n        # Execute the 'say' command with the message\n        subprocess.call(['say', message])\n    except Exception as e:",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "start_task",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def start_task():\n    task_state['is_reset'] = False\n    task_state['is_running'] = True\n    interval = task_state['interval']\n    duration = task_state['duration']\n    task = task_state['task']\n    perform_task(task, task_state['use_screenshots'], task_state['use_photos'])\n    task_state['total_duration_seconds'] = duration * 60\n    for cycle in range(duration):\n        if task_state['is_reset']:",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "update_labels",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def update_labels():\n    total_minutes, total_seconds = divmod(task_state['total_duration_seconds'], 60)\n@app.route('/', methods=['GET', 'POST'])\ndef index():\n    if request.method == 'POST':\n        # Handle form submission\n        task_state['use_screenshots'] = 'use_screenshots' in request.form\n        task_state['use_photos'] = 'use_photos' in request.form\n        task_state['interval'] = int(request.form['interval'])\n        task_state['duration'] = int(request.form['duration'])",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "index",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def index():\n    if request.method == 'POST':\n        # Handle form submission\n        task_state['use_screenshots'] = 'use_screenshots' in request.form\n        task_state['use_photos'] = 'use_photos' in request.form\n        task_state['interval'] = int(request.form['interval'])\n        task_state['duration'] = int(request.form['duration'])\n        task_state['task'] = request.form['task']\n        # Start the task in a new thread\n        threading.Thread(target=start_task).start()",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "pause_task",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def pause_task():\n    task_state['is_paused'] = not task_state['is_paused']\n    return jsonify(success=True)\n@app.route('/reset', methods=['POST'])\ndef reset_task():\n    task_state['is_reset'] = True\n    task_state['is_running'] = False\n    task_state['cycle_count'] = 0\n    task_state['totalnt']['total_duration_seconds'] = 0\n    return jsonify(success=True)",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "reset_task",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def reset_task():\n    task_state['is_reset'] = True\n    task_state['is_running'] = False\n    task_state['cycle_count'] = 0\n    task_state['totalnt']['total_duration_seconds'] = 0\n    return jsonify(success=True)\n@app.route('/status')\ndef get_status():\n    # Endpoint to get the current status of the task\n    total_minutes, total_seconds = divmod(task_state['total_duration_seconds'], 60)",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "get_status",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def get_status():\n    # Endpoint to get the current status of the task\n    total_minutes, total_seconds = divmod(task_state['total_duration_seconds'], 60)\n    return jsonify({\n        'cycle_count': task_state['cycle_count'],\n        'cycle_timer': f\"{total_minutes}:{total_seconds:02d}\",\n        'total_duration': f\"{total_minutes}:{total_seconds:02d}\",\n        'is_paused': task_state['is_paused'],\n        'is_running': task_state['is_running']\n    })",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "start",
+        "kind": 2,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "def start():\n    app.run(debug=True)\nif __name__ == '__main__':\n    start()",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "app = Flask(__name__)\napp.secret_key = 'your_secret_key'  # Replace with a real secret key\n# Initialize OpenAI API client\nclient = OpenAI_API()\n# Global variables to keep track of the task state\ntask_state = {\n    'cycle_count': 0,\n    'total_duration_seconds': 0,\n    'is_paused': False,\n    'is_reset': False,",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "app.secret_key",
+        "kind": 5,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "app.secret_key = 'your_secret_key'  # Replace with a real secret key\n# Initialize OpenAI API client\nclient = OpenAI_API()\n# Global variables to keep track of the task state\ntask_state = {\n    'cycle_count': 0,\n    'total_duration_seconds': 0,\n    'is_paused': False,\n    'is_reset': False,\n    'is_running': False,",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "client = OpenAI_API()\n# Global variables to keep track of the task state\ntask_state = {\n    'cycle_count': 0,\n    'total_duration_seconds': 0,\n    'is_paused': False,\n    'is_reset': False,\n    'is_running': False,\n    'task': '',\n    'interval': 0,",
+        "detail": "webapp",
+        "documentation": {}
+    },
+    {
+        "label": "task_state",
+        "kind": 5,
+        "importPath": "webapp",
+        "description": "webapp",
+        "peekOfCode": "task_state = {\n    'cycle_count': 0,\n    'total_duration_seconds': 0,\n    'is_paused': False,\n    'is_reset': False,\n    'is_running': False,\n    'task': '',\n    'interval': 0,\n    'duration': 0\n}",
+        "detail": "webapp",
         "documentation": {}
     }
 ]

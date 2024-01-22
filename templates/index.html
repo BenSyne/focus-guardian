@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus Guardian</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f7f8fa;
+            color: #333;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
+            border-radius: 20px;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+        .card-body {
+            padding: 2rem;
+        }
+        .form-check-label {
+            margin-bottom: 1rem;
+        }
+        .btn-apple-style {
+            background-color: #007aff;
+            color: white;
+            border-radius: 13px;
+            border: none;
+            padding: 10px 20px;
+            font-size: 17px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        .btn-apple-style:hover {
+            background-color: #005ecb;
+        }
+        .form-control {
+            border-radius: 13px;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .status-labels {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-body">
+                <h1 class="card-title text-center mb-4">FOCUS GUARDIAN</h1>
+                <form id="task-form" method="post">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" name="use_screenshots" id="use_screenshots">
+                        <label class="form-check-label" for="use_screenshots">Use screenshots</label>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" name="use_photos" id="use_photos">
+                        <label class="form-check-label" for="use_photos">Use photos</label>
+                    </div>
+                    <div class="form-group">
+                        <label for="interval">Interval (minutes):</label>
+                        <input type="number" class="form-control" name="interval" id="interval" min="1" max="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="duration">Duration (minutes):</label>
+                        <input type="number" class="form-control" name="duration" id="duration" min="1" max="60" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="task">Task:</label>
+                        <textarea class="form-control" name="task" id="task" rows="5" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-apple-style">Start</button>
+                    </div>
+                </form>
+                <hr>
+                <div class="status">
+                    <p class="status-labels">Cycle Count: <span id="cycle-count">0</span></p>
+                    <p class="status-labels">Cycle Timer: <span id="cycle-timer">0:00</span></p>
+                    <p class="status-labels">Total Duration: <span id="total-duration">0:00</span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.minuery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.9/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#task-form').on('submit', function(e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                
+                // Start the task
+                $.post('/', formData, function(response) {
+                    // Handle response
+                    if (response.success) {
+                        updateStatus();
+                    }
+                });
+            });
+
+            function updateStatus() {
+                // Poll the server for status updates
+                setInterval(function() {
+                    $.get('/status', function(data) {
+                        $('#cycle-count').text(data.cycle_count);
+                        $('#cycle-timer').text(data.cycle_timer);
+                        $('#total-duration').text(data.total_duration);
+                        if (data.is_paused) {
+                            // Update UI for paused state
+                        }
+                        if (!data.is_running) {
+                            // Update UI for stopped state
+                        }
+                    });
+                }, 1000); // Update every second
+            }
+        });
+    </script>
+</body>
+</html>
