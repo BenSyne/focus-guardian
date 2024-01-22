@@ -1,5 +1,137 @@
 [
     {
+        "label": "tkinter",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ttk",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "messagebox",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "filedialog",
+        "importPath": "tkinter",
+        "description": "tkinter",
+        "isExtraImport": true,
+        "detail": "tkinter",
+        "documentation": {}
+    },
+    {
+        "label": "ThemedStyle",
+        "importPath": "ttkthemes",
+        "description": "ttkthemes",
+        "isExtraImport": true,
+        "detail": "ttkthemes",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI_API",
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "isExtraImport": true,
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "OpenAI_API",
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "isExtraImport": true,
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "image_to_base64",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "take_screenshot",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "image_to_base64",
+        "importPath": "screenshot",
+        "description": "screenshot",
+        "isExtraImport": true,
+        "detail": "screenshot",
+        "documentation": {}
+    },
+    {
+        "label": "capture_camera_image",
+        "importPath": "camera",
+        "description": "camera",
+        "isExtraImport": true,
+        "detail": "camera",
+        "documentation": {}
+    },
+    {
+        "label": "capture_camera_image",
+        "importPath": "camera",
+        "description": "camera",
+        "isExtraImport": true,
+        "detail": "camera",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "time",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "time",
+        "description": "time",
+        "detail": "time",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -15,15 +147,6 @@
         "importPath": "cv2",
         "description": "cv2",
         "detail": "cv2",
-        "documentation": {}
-    },
-    {
-        "label": "time",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "time",
-        "description": "time",
-        "detail": "time",
         "documentation": {}
     },
     {
@@ -132,52 +255,11 @@
         "documentation": {}
     },
     {
-        "label": "take_screenshot",
-        "importPath": "screenshot",
-        "description": "screenshot",
-        "isExtraImport": true,
-        "detail": "screenshot",
-        "documentation": {}
-    },
-    {
-        "label": "image_to_base64",
-        "importPath": "screenshot",
-        "description": "screenshot",
-        "isExtraImport": true,
-        "detail": "screenshot",
-        "documentation": {}
-    },
-    {
-        "label": "capture_camera_image",
-        "importPath": "camera",
-        "description": "camera",
-        "isExtraImport": true,
-        "detail": "camera",
-        "documentation": {}
-    },
-    {
-        "label": "OpenAI_API",
-        "importPath": "openai_api",
-        "description": "openai_api",
-        "isExtraImport": true,
-        "detail": "openai_api",
-        "documentation": {}
-    },
-    {
         "label": "History",
         "importPath": "history",
         "description": "history",
         "isExtraImport": true,
         "detail": "history",
-        "documentation": {}
-    },
-    {
-        "label": "subprocess",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "subprocess",
-        "description": "subprocess",
-        "detail": "subprocess",
         "documentation": {}
     },
     {
@@ -222,6 +304,23 @@
         "importPath": "pyautogui",
         "description": "pyautogui",
         "detail": "pyautogui",
+        "documentation": {}
+    },
+    {
+        "label": "setup",
+        "importPath": "setuptools",
+        "description": "setuptools",
+        "isExtraImport": true,
+        "detail": "setuptools",
+        "documentation": {}
+    },
+    {
+        "label": "App",
+        "kind": 6,
+        "importPath": "app",
+        "description": "app",
+        "peekOfCode": "class App:\n    def __init__(self, root):\n        self.root = root\n        self.root.title(\"FOCUS GUARDIAN\")\n        self.create_widgets()\n        self.client = OpenAI_API()\n        self.cycle_count = 0\n        self.total_duration_seconds = 0\n        self.is_paused = False\n        self.is_reset = False",
+        "detail": "app",
         "documentation": {}
     },
     {
@@ -297,11 +396,20 @@
         "documentation": {}
     },
     {
+        "label": "OPENAI_API_KEY",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\n# User settings\nTASK_DESCRIPTION = \"google travel tips for thailand\"\nSESSION_DURATION = 60000  # in seconds\nCHECK_INTERVAL = 60  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = False\nINSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
         "label": "TASK_DESCRIPTION",
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "TASK_DESCRIPTION = \"google travel tips for thailand\"\nSESSION_DURATION = 60000  # in minutes\nCHECK_INTERVAL = 10  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = True\nINSTRUCTION_BLOCK = \"\"\"\nOkay, I want you to help me focus, so check in the first image if I have an application open related to coding, since that's what I should be focusing on. In the second image, make sure that I am looking at the computer screen or one of them, which either means I'm looking directly at the camera or just to the left of it at the second monitor. If I'm looking elsewhere or down, which is probably me looking at my phone, gently remind me to get back on task. If I am doing the right thing, simply say, great job, keep going then.\nkeep the message very short, since I am trying to focus.\nwrite your reply as one continues block of text with no new lines please and dont use any special characters but still keep it short please ",
+        "peekOfCode": "TASK_DESCRIPTION = \"google travel tips for thailand\"\nSESSION_DURATION = 60000  # in seconds\nCHECK_INTERVAL = 60  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = False\nINSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.\nBen the user is supposed to be doing the following task:\nTASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"",
         "detail": "settings",
         "documentation": {}
     },
@@ -310,7 +418,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "SESSION_DURATION = 60000  # in minutes\nCHECK_INTERVAL = 10  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = True\nINSTRUCTION_BLOCK = \"\"\"\nOkay, I want you to help me focus, so check in the first image if I have an application open related to coding, since that's what I should be focusing on. In the second image, make sure that I am looking at the computer screen or one of them, which either means I'm looking directly at the camera or just to the left of it at the second monitor. If I'm looking elsewhere or down, which is probably me looking at my phone, gently remind me to get back on task. If I am doing the right thing, simply say, great job, keep going then.\nkeep the message very short, since I am trying to focus.\nwrite your reply as one continues block of text with no new lines please and dont use any special characters but still keep it short please \nonly respond with either a encouragement or a reminder to get back on task",
+        "peekOfCode": "SESSION_DURATION = 60000  # in seconds\nCHECK_INTERVAL = 60  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = False\nINSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.\nBen the user is supposed to be doing the following task:\nTASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\ncheck if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.",
         "detail": "settings",
         "documentation": {}
     },
@@ -319,7 +427,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "CHECK_INTERVAL = 10  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = True\nINSTRUCTION_BLOCK = \"\"\"\nOkay, I want you to help me focus, so check in the first image if I have an application open related to coding, since that's what I should be focusing on. In the second image, make sure that I am looking at the computer screen or one of them, which either means I'm looking directly at the camera or just to the left of it at the second monitor. If I'm looking elsewhere or down, which is probably me looking at my phone, gently remind me to get back on task. If I am doing the right thing, simply say, great job, keep going then.\nkeep the message very short, since I am trying to focus.\nwrite your reply as one continues block of text with no new lines please and dont use any special characters but still keep it short please \nonly respond with either a encouragement or a reminder to get back on task\n\"\"\"",
+        "peekOfCode": "CHECK_INTERVAL = 60  # in seconds\n# Image source settings\nUSE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = False\nINSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.\nBen the user is supposed to be doing the following task:\nTASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\ncheck if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.\nBe brief given that the user is trying to focus. I they are on task, say \"That's awesome\" and if they are not on task, say \"That's not awesome\"",
         "detail": "settings",
         "documentation": {}
     },
@@ -328,7 +436,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "USE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = True\nINSTRUCTION_BLOCK = \"\"\"\nOkay, I want you to help me focus, so check in the first image if I have an application open related to coding, since that's what I should be focusing on. In the second image, make sure that I am looking at the computer screen or one of them, which either means I'm looking directly at the camera or just to the left of it at the second monitor. If I'm looking elsewhere or down, which is probably me looking at my phone, gently remind me to get back on task. If I am doing the right thing, simply say, great job, keep going then.\nkeep the message very short, since I am trying to focus.\nwrite your reply as one continues block of text with no new lines please and dont use any special characters but still keep it short please \nonly respond with either a encouragement or a reminder to get back on task\n\"\"\"\n# INSTRUCTION_BLOCK = \"\"\"\n# Your name is focus guardian, you are a guardian that helps people stay focused on their tasks.",
+        "peekOfCode": "USE_SCREENSHOT = True\nUSE_CAMERA_IMAGE = False\nINSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.\nBen the user is supposed to be doing the following task:\nTASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\ncheck if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.\nBe brief given that the user is trying to focus. I they are on task, say \"That's awesome\" and if they are not on task, say \"That's not awesome\"\nalways end every message with, good luck Ben!\n\"\"\"",
         "detail": "settings",
         "documentation": {}
     },
@@ -337,7 +445,7 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "USE_CAMERA_IMAGE = True\nINSTRUCTION_BLOCK = \"\"\"\nOkay, I want you to help me focus, so check in the first image if I have an application open related to coding, since that's what I should be focusing on. In the second image, make sure that I am looking at the computer screen or one of them, which either means I'm looking directly at the camera or just to the left of it at the second monitor. If I'm looking elsewhere or down, which is probably me looking at my phone, gently remind me to get back on task. If I am doing the right thing, simply say, great job, keep going then.\nkeep the message very short, since I am trying to focus.\nwrite your reply as one continues block of text with no new lines please and dont use any special characters but still keep it short please \nonly respond with either a encouragement or a reminder to get back on task\n\"\"\"\n# INSTRUCTION_BLOCK = \"\"\"\n# Your name is focus guardian, you are a guardian that helps people stay focused on their tasks.\n# Ben the user is supposed to be doing the following task:",
+        "peekOfCode": "USE_CAMERA_IMAGE = False\nINSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.\nBen the user is supposed to be doing the following task:\nTASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\ncheck if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.\nBe brief given that the user is trying to focus. I they are on task, say \"That's awesome\" and if they are not on task, say \"That's not awesome\"\nalways end every message with, good luck Ben!\n\"\"\"\n# INSTRUCTION_BLOCK = \"\"\"",
         "detail": "settings",
         "documentation": {}
     },
@@ -346,7 +454,16 @@
         "kind": 5,
         "importPath": "settings",
         "description": "settings",
-        "peekOfCode": "INSTRUCTION_BLOCK = \"\"\"\nOkay, I want you to help me focus, so check in the first image if I have an application open related to coding, since that's what I should be focusing on. In the second image, make sure that I am looking at the computer screen or one of them, which either means I'm looking directly at the camera or just to the left of it at the second monitor. If I'm looking elsewhere or down, which is probably me looking at my phone, gently remind me to get back on task. If I am doing the right thing, simply say, great job, keep going then.\nkeep the message very short, since I am trying to focus.\nwrite your reply as one continues block of text with no new lines please and dont use any special characters but still keep it short please \nonly respond with either a encouragement or a reminder to get back on task\n\"\"\"\n# INSTRUCTION_BLOCK = \"\"\"\n# Your name is focus guardian, you are a guardian that helps people stay focused on their tasks.\n# Ben the user is supposed to be doing the following task:\n# TASK_DESCRIPTION = \"degbug the potts website and either be looking at pots site, replit with code, github or the clickup list of bugs\"",
+        "peekOfCode": "INSTRUCTION_BLOCK = \"\"\"\nYour name is focus guardian, you are a guardian that helps people stay focused on their tasks.\nBen the user is supposed to be doing the following task:\nTASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\ncheck if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.\nBe brief given that the user is trying to focus. I they are on task, say \"That's awesome\" and if they are not on task, say \"That's not awesome\"\nalways end every message with, good luck Ben!\n\"\"\"\n# INSTRUCTION_BLOCK = \"\"\"\n# what color is my shirt?",
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "TASK_DESCRIPTION",
+        "kind": 5,
+        "importPath": "settings",
+        "description": "settings",
+        "peekOfCode": "TASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\ncheck if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congradulate them on their focus on wish them luck.\nBe brief given that the user is trying to focus. I they are on task, say \"That's awesome\" and if they are not on task, say \"That's not awesome\"\nalways end every message with, good luck Ben!\n\"\"\"\n# INSTRUCTION_BLOCK = \"\"\"\n# what color is my shirt?\n# \"\"\"\n# INSTRUCTION_BLOCK = \"\"\"\n# can you be a doll and tell me if I looks like im sitting hunched or up strait? love u mwwa ",
         "detail": "settings",
         "documentation": {}
     },
@@ -384,6 +501,33 @@
         "description": "settings",
         "peekOfCode": "SCREENSHOT_PATH = \"./screenshots/\"\n# Audio feedback settings\nimport pyautogui\nimport os\nimport time\nfrom settings import SCREENSHOT_PATH\n# def capture_screenshot(filename):\n#     \"\"\"\n#     Function to capture a screenshot and save it to the specified path.\n#     \"\"\"",
         "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "APP",
+        "kind": 5,
+        "importPath": "setup",
+        "description": "setup",
+        "peekOfCode": "APP = ['app.py']\nDATA_FILES = []\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,",
+        "detail": "setup",
+        "documentation": {}
+    },
+    {
+        "label": "DATA_FILES",
+        "kind": 5,
+        "importPath": "setup",
+        "description": "setup",
+        "peekOfCode": "DATA_FILES = []\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,",
+        "detail": "setup",
+        "documentation": {}
+    },
+    {
+        "label": "OPTIONS",
+        "kind": 5,
+        "importPath": "setup",
+        "description": "setup",
+        "peekOfCode": "OPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},",
+        "detail": "setup",
         "documentation": {}
     }
 ]
