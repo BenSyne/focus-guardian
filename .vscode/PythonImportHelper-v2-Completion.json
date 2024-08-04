@@ -25,7 +25,7 @@
         "documentation": {}
     },
     {
-        "label": "filedialog",
+        "label": "scrolledtext",
         "importPath": "tkinter",
         "description": "tkinter",
         "isExtraImport": true,
@@ -58,14 +58,6 @@
     },
     {
         "label": "take_screenshot",
-        "importPath": "screenshot",
-        "description": "screenshot",
-        "isExtraImport": true,
-        "detail": "screenshot",
-        "documentation": {}
-    },
-    {
-        "label": "image_to_base64",
         "importPath": "screenshot",
         "description": "screenshot",
         "isExtraImport": true,
@@ -141,21 +133,78 @@
         "documentation": {}
     },
     {
-        "label": "cv2",
+        "label": "logging",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "cv2",
-        "description": "cv2",
-        "detail": "cv2",
+        "importPath": "logging",
+        "description": "logging",
+        "detail": "logging",
         "documentation": {}
     },
     {
-        "label": "collections",
+        "label": "json",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "collections",
-        "description": "collections",
-        "detail": "collections",
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "matplotlib.pyplot",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "matplotlib.pyplot",
+        "description": "matplotlib.pyplot",
+        "detail": "matplotlib.pyplot",
+        "documentation": {}
+    },
+    {
+        "label": "FigureCanvasTkAgg",
+        "importPath": "matplotlib.backends.backend_tkagg",
+        "description": "matplotlib.backends.backend_tkagg",
+        "isExtraImport": true,
+        "detail": "matplotlib.backends.backend_tkagg",
+        "documentation": {}
+    },
+    {
+        "label": "TASK_DESCRIPTION",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
+        "documentation": {}
+    },
+    {
+        "label": "INSTRUCTION_BLOCK",
+        "importPath": "settings",
+        "description": "settings",
+        "isExtraImport": true,
+        "detail": "settings",
         "documentation": {}
     },
     {
@@ -231,19 +280,21 @@
         "documentation": {}
     },
     {
-        "label": "datetime",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "cv2",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "datetime",
+        "importPath": "cv2",
+        "description": "cv2",
+        "detail": "cv2",
         "documentation": {}
     },
     {
-        "label": "timedelta",
-        "importPath": "datetime",
-        "description": "datetime",
+        "label": "collections",
+        "kind": 6,
         "isExtraImport": true,
-        "detail": "datetime",
+        "importPath": "collections",
+        "description": "collections",
+        "detail": "collections",
         "documentation": {}
     },
     {
@@ -317,7 +368,7 @@
         "kind": 6,
         "importPath": "app",
         "description": "app",
-        "peekOfCode": "class App:\n    def __init__(self, root):\n        self.root = root\n        self.root.title(\"FOCUS GUARDIAN\")\n        self.create_widgets()\n        self.client = OpenAI_API()\n        self.cycle_count = 0\n        self.total_duration_seconds = 0\n        self.is_paused = False\n        self.is_reset = False",
+        "peekOfCode": "class App:\n    def __init__(self, root):\n        self.root = root\n        self.root.title(\"FOCUS GUARDIAN\")\n        self.client = OpenAI_API()\n        self.initialize_variables()\n        self.create_widgets()\n        self.bind_shortcuts()\n        self.session_history = []\n    def bind_shortcuts(self):",
         "detail": "app",
         "documentation": {}
     },
@@ -353,7 +404,7 @@
         "kind": 2,
         "importPath": "main",
         "description": "main",
-        "peekOfCode": "def main():\n    # print(\"Initializing OpenAI API...\")\n    openai_api = OpenAI_API()\n    # print(\"OpenAI API initialized.\")\n    # print(\"Initializing history...\")\n    history = History()\n    # print(\"History initialized.\")\n    # print(\"Calculating end time...\")\n    end_time = datetime.now() + timedelta(minutes=SESSION_DURATION)\n    print(f\"End time calculated: {end_time}\")",
+        "peekOfCode": "def main():\n    openai_api = OpenAI_API()\n    history = History()\n    end_time = datetime.now() + timedelta(seconds=SESSION_DURATION)\n    interval_count = 0\n    while datetime.now() < end_time:\n        print(f\"Starting interval {interval_count + 1}...\")\n        # Wait for the check interval\n        time.sleep(CHECK_INTERVAL)\n        screenshot_filename = None",
         "detail": "main",
         "documentation": {}
     },
@@ -362,7 +413,7 @@
         "kind": 6,
         "importPath": "openai_api",
         "description": "openai_api",
-        "peekOfCode": "class OpenAI_API:\n    def __init__(self):\n        load_dotenv()\n        OPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\n        if not OPENAI_API_KEY:\n            raise ValueError(\"OPENAI_API_KEY not found in environment variables\")\n        self.client = OpenAI(api_key=OPENAI_API_KEY)\n        self.model = 'gpt-4o'\n    @staticmethod\n    def encode_image(image_path):",
+        "peekOfCode": "class OpenAI_API:\n    def __init__(self):\n        load_dotenv()\n        OPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\n        if not OPENAI_API_KEY:\n            raise ValueError(\"OPENAI_API_KEY not found in environment variables\")\n        self.client = OpenAI(api_key=OPENAI_API_KEY)\n        self.model = 'gpt-4o'\n        self.conversation_history = []\n    @staticmethod",
         "detail": "openai_api",
         "documentation": {}
     },
@@ -380,7 +431,7 @@
         "kind": 5,
         "importPath": "openai_api",
         "description": "openai_api",
-        "peekOfCode": "OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nclass OpenAI_API:\n    def __init__(self):\n        load_dotenv()\n        OPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\n        if not OPENAI_API_KEY:\n            raise ValueError(\"OPENAI_API_KEY not found in environment variables\")\n        self.client = OpenAI(api_key=OPENAI_API_KEY)\n        self.model = 'gpt-4o'\n    @staticmethod",
+        "peekOfCode": "OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nlogging.basicConfig(filename='focus_guardian.log', level=logging.INFO, \n                    format='%(asctime)s - %(levelname)s - %(message)s')\nclass OpenAI_API:\n    def __init__(self):\n        load_dotenv()\n        OPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\n        if not OPENAI_API_KEY:\n            raise ValueError(\"OPENAI_API_KEY not found in environment variables\")\n        self.client = OpenAI(api_key=OPENAI_API_KEY)",
         "detail": "openai_api",
         "documentation": {}
     },
@@ -515,7 +566,7 @@
         "kind": 5,
         "importPath": "setup",
         "description": "setup",
-        "peekOfCode": "APP = ['app.py']  # The main entry point of your app\nDATA_FILES = []  # Any data files that your app uses\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,",
+        "peekOfCode": "APP = ['app.py']  # The main entry point of your app\nDATA_FILES = []  # Any data files that your app uses\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime', 'matplotlib'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,",
         "detail": "setup",
         "documentation": {}
     },
@@ -524,7 +575,7 @@
         "kind": 5,
         "importPath": "setup",
         "description": "setup",
-        "peekOfCode": "DATA_FILES = []  # Any data files that your app uses\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},",
+        "peekOfCode": "DATA_FILES = []  # Any data files that your app uses\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime', 'matplotlib'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},",
         "detail": "setup",
         "documentation": {}
     },
@@ -533,7 +584,7 @@
         "kind": 5,
         "importPath": "setup",
         "description": "setup",
-        "peekOfCode": "OPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},\n    setup_requires=['py2app'],",
+        "peekOfCode": "OPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime', 'matplotlib'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},\n    setup_requires=['py2app'],",
         "detail": "setup",
         "documentation": {}
     }

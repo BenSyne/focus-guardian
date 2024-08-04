@@ -4,7 +4,7 @@ APP = ['app.py']  # The main entry point of your app
 DATA_FILES = []  # Any data files that your app uses
 OPTIONS = {
     'argv_emulation': True,
-    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],
+    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime', 'matplotlib'],
     'includes': ['rubicon'],
 }
 

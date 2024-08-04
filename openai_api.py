@@ -3,9 +3,13 @@ import base64
 from openai import OpenAI
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
 OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+
+logging.basicConfig(filename='focus_guardian.log', level=logging.INFO, 
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 class OpenAI_API:
     def __init__(self):
@@ -15,6 +19,7 @@ class OpenAI_API:
             raise ValueError("OPENAI_API_KEY not found in environment variables")
         self.client = OpenAI(api_key=OPENAI_API_KEY)
         self.model = 'gpt-4o'
+        self.conversation_history = []
 
     @staticmethod
     def encode_image(image_path):
@@ -53,11 +58,13 @@ class OpenAI_API:
             )
 
             if response.choices:
-                return response.choices[0].message.content
+                ai_message = response.choices[0].message.content
+                self.conversation_history.append({"role": "assistant", "content": ai_message})
+                return ai_message
             else:
                 return "I apologize, but I encountered an error while processing your request."
         except Exception as e:
-            print(f"Error in OpenAI API request: {str(e)}")
+            logging.error(f"Error in OpenAI API request: {str(e)}")
             return "I apologize, but I encountered an error while processing your request."
 
 def main():

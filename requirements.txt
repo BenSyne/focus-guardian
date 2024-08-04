@@ -2,7 +2,21 @@
 pyautogui
 requests
 subprocess32
+opencv-python
+python-dotenv
 
 # OpenAI library
 openai
-<FINAL_CODE>
+
+# GUI libraries
+tkinter
+ttkthemes
+
+# Data processing and visualization
+matplotlib
+
+# Image processing
+Pillow
+
+# Other utilities
+pytz

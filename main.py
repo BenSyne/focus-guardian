@@ -9,62 +9,48 @@ import subprocess
 from audio_feedback import provide_audio_feedback
 
 def main():
-    # print("Initializing OpenAI API...")
     openai_api = OpenAI_API()
-    # print("OpenAI API initialized.")
-
-    # print("Initializing history...")
     history = History()
-    # print("History initialized.")
-
-    # print("Calculating end time...")
-    end_time = datetime.now() + timedelta(minutes=SESSION_DURATION)
-    print(f"End time calculated: {end_time}")
-
-    # print("Entering main loop...")
-    interval_count = 0  # Initialize interval count
+    end_time = datetime.now() + timedelta(seconds=SESSION_DURATION)
+    
+    interval_count = 0
     while datetime.now() < end_time:
-        # print(f"Starting interval {interval_count + 1}...")  # Print the interval count
-
+        print(f"Starting interval {interval_count + 1}...")
+        
+        # Wait for the check interval
+        time.sleep(CHECK_INTERVAL)
+        
+        screenshot_filename = None
+        camera_image_filename = None
+        
         if USE_SCREENSHOT:
             print("Capturing screenshot...")
-            screenshot_filename = "screenshot.png"
+            screenshot_filename = f"screenshot_{interval_count}.png"
             take_screenshot(screenshot_filename)
-            # print(f"Screenshot captured: {screenshot_filename}")
-            
-            # print("Converting screenshot to base64...")
-            screenshot_base64 = image_to_base64(screenshot_filename)
-            # print("Screenshot converted to base64.")
-
+        
         if USE_CAMERA_IMAGE:
             print("Capturing camera image...")
-            camera_image_filename = "camera_image.png"
+            camera_image_filename = f"camera_image_{interval_count}.png"
             capture_camera_image(camera_image_filename)
-            # print(f"Camera image captured: {camera_image_filename}")
-
-            # print("Converting camera image to base64...")
-            camera_image_base64 = image_to_base64(camera_image_filename)
-            # print("Camera image converted to base64.")
-
+        
         print("Sending request to OpenAI API...")
-        instruction = INSTRUCTION_BLOCK
-        response = openai_api.send_request(instruction, screenshot_filename if USE_SCREENSHOT else None, camera_image_filename if USE_CAMERA_IMAGE else None, history.get_history())
-        report = response['choices'][0]['message']['content']
-        print(f"Received response from OpenAI API: {report}")
-
-        # print("Adding response to history...")
+        response = openai_api.send_request(
+            INSTRUCTION_BLOCK,
+            screenshot_filename,
+            camera_image_filename,
+            history.get_history()
+        )
+        
+        print(f"Received response from OpenAI API: {response}")
+        
         history.add_to_history(response)
-        # print("Response added to history.")
-
+        
         print("Providing audio feedback...")
-        provide_audio_feedback(report)
-        # print("Audio feedback provided.")
-
+        provide_audio_feedback(response)
+        
         print("Waiting for the next check interval...\n\n")
-        time.sleep(CHECK_INTERVAL)
-        print("Check interval ended.")
-
-        interval_count += 1  # Increment the interval count
+        
+        interval_count += 1
 
 if __name__ == "__main__":
     print("Starting main function...")
