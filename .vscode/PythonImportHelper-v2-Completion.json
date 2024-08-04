@@ -223,14 +223,6 @@
         "documentation": {}
     },
     {
-        "label": "OPENAI_API_KEY",
-        "importPath": "settings",
-        "description": "settings",
-        "isExtraImport": true,
-        "detail": "settings",
-        "documentation": {}
-    },
-    {
         "label": "SCREENSHOT_PATH",
         "importPath": "settings",
         "description": "settings",
@@ -280,20 +272,26 @@
         "documentation": {}
     },
     {
-        "label": "requests",
-        "kind": 6,
+        "label": "OpenAI",
+        "importPath": "openai",
+        "description": "openai",
         "isExtraImport": true,
-        "importPath": "requests",
-        "description": "requests",
-        "detail": "requests",
+        "detail": "openai",
         "documentation": {}
     },
     {
-        "label": "dotenv",
-        "kind": 6,
-        "isExtraImport": true,
+        "label": "load_dotenv",
         "importPath": "dotenv",
         "description": "dotenv",
+        "isExtraImport": true,
+        "detail": "dotenv",
+        "documentation": {}
+    },
+    {
+        "label": "load_dotenv",
+        "importPath": "dotenv",
+        "description": "dotenv",
+        "isExtraImport": true,
         "detail": "dotenv",
         "documentation": {}
     },
@@ -364,7 +362,7 @@
         "kind": 6,
         "importPath": "openai_api",
         "description": "openai_api",
-        "peekOfCode": "class OpenAI_API:\n    def __init__(self):\n        self.headers = {\n            'Content-Type': 'application/json',\n            'Authorization': f'Bearer {OPENAI_API_KEY}'\n        }\n    @staticmethod\n    def encode_image(image_path):\n        with open(image_path, 'rb') as image_file:\n            return base64.b64encode(image_file.read()).decode('utf-8')",
+        "peekOfCode": "class OpenAI_API:\n    def __init__(self):\n        load_dotenv()\n        OPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\n        if not OPENAI_API_KEY:\n            raise ValueError(\"OPENAI_API_KEY not found in environment variables\")\n        self.client = OpenAI(api_key=OPENAI_API_KEY)\n        self.model = 'gpt-4o'\n    @staticmethod\n    def encode_image(image_path):",
         "detail": "openai_api",
         "documentation": {}
     },
@@ -373,7 +371,16 @@
         "kind": 2,
         "importPath": "openai_api",
         "description": "openai_api",
-        "peekOfCode": "def main():\n    # Initialize the OpenAI API client\n    client = OpenAI_API()\n    # Define the instruction block and the image path\n    instruction_block = \"What’s in this image?\"\n    screenshot_path = \"screenshot.png\"\n    camera_image_path = \"camera_image.png\"\n    # Define the history (empty in this example)\n    history = []\n    # Send the request to the OpenAI API",
+        "peekOfCode": "def main():\n    # Initialize the OpenAI API client\n    client = OpenAI_API()\n    # Define the instruction block and the image path\n    instruction_block = \"What's in this image?\"\n    screenshot_path = \"screenshot.png\"\n    camera_image_path = \"camera_image.png\"\n    # Send the request to the OpenAI API\n    response = client.send_request(instruction_block, screenshot_path, camera_image_path)\n    # Print the response",
+        "detail": "openai_api",
+        "documentation": {}
+    },
+    {
+        "label": "OPENAI_API_KEY",
+        "kind": 5,
+        "importPath": "openai_api",
+        "description": "openai_api",
+        "peekOfCode": "OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')\nclass OpenAI_API:\n    def __init__(self):\n        load_dotenv()\n        OPENAI_API_KEY = os.getenv(\"OPENAI_API_KEY\")\n        if not OPENAI_API_KEY:\n            raise ValueError(\"OPENAI_API_KEY not found in environment variables\")\n        self.client = OpenAI(api_key=OPENAI_API_KEY)\n        self.model = 'gpt-4o'\n    @staticmethod",
         "detail": "openai_api",
         "documentation": {}
     },
@@ -508,7 +515,7 @@
         "kind": 5,
         "importPath": "setup",
         "description": "setup",
-        "peekOfCode": "APP = ['app.py']\nDATA_FILES = []\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,",
+        "peekOfCode": "APP = ['app.py']  # The main entry point of your app\nDATA_FILES = []  # Any data files that your app uses\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,",
         "detail": "setup",
         "documentation": {}
     },
@@ -517,7 +524,7 @@
         "kind": 5,
         "importPath": "setup",
         "description": "setup",
-        "peekOfCode": "DATA_FILES = []\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,",
+        "peekOfCode": "DATA_FILES = []  # Any data files that your app uses\nOPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},",
         "detail": "setup",
         "documentation": {}
     },
@@ -526,7 +533,7 @@
         "kind": 5,
         "importPath": "setup",
         "description": "setup",
-        "peekOfCode": "OPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes'],\n    'includes': ['rubicon-objc'],\n    # If you have other packages or data files, include them here\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},",
+        "peekOfCode": "OPTIONS = {\n    'argv_emulation': True,\n    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],\n    'includes': ['rubicon'],\n}\nsetup(\n    app=APP,\n    data_files=DATA_FILES,\n    options={'py2app': OPTIONS},\n    setup_requires=['py2app'],",
         "detail": "setup",
         "documentation": {}
     }

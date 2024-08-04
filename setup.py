@@ -1,12 +1,11 @@
 from setuptools import setup
 
-APP = ['app.py']
-DATA_FILES = []
+APP = ['app.py']  # The main entry point of your app
+DATA_FILES = []  # Any data files that your app uses
 OPTIONS = {
     'argv_emulation': True,
-    'packages': ['tkinter', 'ttkthemes'],
-    'includes': ['rubicon-objc'],
-    # If you have other packages or data files, include them here
+    'packages': ['tkinter', 'ttkthemes', 'requests', 'base64', 'collections', 'os', 'time', 'threading', 'datetime'],
+    'includes': ['rubicon'],
 }
 
 setup(

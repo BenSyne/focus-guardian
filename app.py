@@ -52,7 +52,7 @@ class App:
 
         self.duration_label = tk.Label(setup_frame, text="Duration (minutes):")
         self.duration_label.pack()
-        self.duration_spinbox = tk.Spinbox(setup_frame, from_=1, to=60)
+        self.duration_spinbox = tk.Spinbox(setup_frame, from_=1, to=60, value=30)  # Set default value to 30
         self.duration_spinbox.pack()
 
         self.task_label = tk.Label(setup_frame, text="Task:")
@@ -61,7 +61,9 @@ class App:
         default_task_text = (
             "Your name is focus guardian, you are a guardian that helps people stay focused on their tasks.\n\n"
             "Ben the user is supposed to be doing the following task:\n\n"
-            "TASK_DESCRIPTION = \"Get your code organized and do some research into the trading strategies for the Rick ai\"\n\n"
+            
+            "TASK_DESCRIPTION = \"the main task is to create a program that analyzes the current strategy i have using ai by create code to get data, plot the results of the backtest and trades both on multiple charts and individually, save them in a good way then use ai prompts to extract data from the charts and run an analysis to extract insights from the charts\"\n\n"
+            
             "check if the user seems to be doing the right thing by looking at the image and seeing if what they have on screen seems to be associated with their task. If it isn't reply with a simple message reminded them to get back on track. If it does seem like what they are doing is on tasks, congratulate them on their focus on wish them luck.\n\n"
             "Be brief given that the user is trying to focus. If they are on task, say \"That's awesome\" and if they are not on task, say \"That's not awesome\"\n\n"
             "always end every message with, good luck Ben!"
@@ -164,9 +166,8 @@ class App:
         print("Sending request to OpenAI API...")
         response = self.client.send_request(task, screenshot_filename, camera_image_filename)
         print("Received response from OpenAI API.")
-        report = response['choices'][0]['message']['content']
-        print(report)
-        self.provide_audio_feedback(report)
+        print(response)  # Print the raw response for debugging
+        self.provide_audio_feedback(response)
         print("Waiting for the next cycle...")
 
     def provide_audio_feedback(self, message):
@@ -194,4 +195,3 @@ if __name__ == "__main__":
     style = ThemedStyle(theme="equilux")  # Set the theme
     app = App(root)
     app.start()
-
