@@ -27,6 +27,9 @@ Be brief given that the user is trying to focus. I they are on task, say "That's
 
 always end every message with, good luck Ben!
 
+At the end of your response, add a line with just a number from 0 to 1, where 0 means completely unfocused and 1 means fully focused. For example: 
+Focus Score: 0.8
+
 """
 
 # INSTRUCTION_BLOCK = """

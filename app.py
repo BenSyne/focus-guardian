@@ -44,6 +44,9 @@ class App:
         self.mode.trace("w", self.on_mode_change)
         self.use_screenshots_var = tk.BooleanVar(value=True)
         self.use_photos_var = tk.BooleanVar(value=False)
+        self.focus_scores = []
+        self.total_focus_score = 0
+        self.focus_intervals = 0
 
     def create_widgets(self):
         style = ThemedStyle(self.root)
@@ -241,7 +244,10 @@ Stay focused and good luck!
                 time.sleep(0.1)
 
         if not self.is_reset and not self.is_paused and phase == "Work":
-            threading.Thread(target=self.perform_task, args=(task,)).start()
+            threading.Thread(target=self.perform_task, args=(task,), daemon=True).start()
+
+        # Wait for a short time to allow the AI processing to start
+        time.sleep(0.1)
 
     def update_progress(self, total_duration, remaining):
         progress = ((total_duration - remaining) / total_duration) * 100
@@ -262,9 +268,29 @@ Stay focused and good luck!
         current_instructions = self.ai_instructions_text.get("1.0", tk.END).strip()
         response = self.client.send_request(current_instructions, screenshot_filename, camera_image_filename)
         print(f"OpenAI Response: {response}")
-        self.provide_audio_feedback(response)
 
-        self.clean_up_files(screenshot_filename, camera_image_filename)
+        # Extract focus score
+        focus_score = self.extract_focus_score(response)
+        self.update_focus_stats(focus_score)
+
+        # Use after() to schedule UI updates on the main thread
+        self.root.after(0, self.provide_audio_feedback, response)
+        self.root.after(0, self.clean_up_files, screenshot_filename, camera_image_filename)
+
+    def extract_focus_score(self, response):
+        lines = response.split('\n')
+        for line in reversed(lines):
+            if line.startswith("Focus Score:"):
+                try:
+                    return float(line.split(":")[1].strip())
+                except ValueError:
+                    return 0
+        return 0
+
+    def update_focus_stats(self, focus_score):
+        self.focus_scores.append(focus_score)
+        self.total_focus_score += focus_score
+        self.focus_intervals += 1
 
     def provide_audio_feedback(self, message):
         try:
@@ -306,15 +332,25 @@ Stay focused and good luck!
         self.pomo_count_label.config(text=f"Completed Pomodoros: {self.pomodoro_count}")
 
     def save_session(self):
+        avg_focus_score = self.total_focus_score / self.focus_intervals if self.focus_intervals > 0 else 0
+        focus_percentage = avg_focus_score * 100
         session = {
             'date': datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            'duration': self.duration,
+            'duration': self.total_duration_seconds // 60,  # Convert to minutes
             'cycles': self.cycle_count,
-            'task': self.task_text.get("1.0", tk.END).strip()
+            'task': self.task_text.get("1.0", tk.END).strip(),
+            'focus_percentage': round(focus_percentage, 2),
+            'focus_scores': self.focus_scores
         }
         self.session_history.append(session)
         with open('session_history.json', 'w') as f:
             json.dump(self.session_history, f)
+        
+        self.show_focus_report(focus_percentage)
+
+    def show_focus_report(self, focus_percentage):
+        report = f"Session completed!\n\nFocus percentage: {focus_percentage:.2f}%"
+        messagebox.showinfo("Session Report", report)
 
     def show_history(self):
         history_window = tk.Toplevel(self.root)
@@ -327,7 +363,26 @@ Stay focused and good luck!
             tk.Label(session_frame, text=f"Date: {session['date']}").pack(anchor=tk.W)
             tk.Label(session_frame, text=f"Duration: {session['duration']} minutes").pack(anchor=tk.W)
             tk.Label(session_frame, text=f"Cycles: {session['cycles']}").pack(anchor=tk.W)
+            tk.Label(session_frame, text=f"Focus Percentage: {session['focus_percentage']}%").pack(anchor=tk.W)
             tk.Label(session_frame, text=f"Task: {session['task'][:50]}...").pack(anchor=tk.W)
+
+        self.plot_focus_history(history_window)
+
+    def plot_focus_history(self, parent):
+        fig, ax = plt.subplots(figsize=(8, 4))
+        dates = [session['date'] for session in self.session_history]
+        focus_percentages = [session['focus_percentage'] for session in self.session_history]
+        
+        ax.plot(dates, focus_percentages, marker='o')
+        ax.set_xlabel('Date')
+        ax.set_ylabel('Focus Percentage')
+        ax.set_title('Focus History')
+        plt.xticks(rotation=45)
+        plt.tight_layout()
+
+        canvas = FigureCanvasTkAgg(fig, master=parent)
+        canvas_widget = canvas.get_tk_widget()
+        canvas_widget.pack()
 
     def update_ai_instructions(self, event=None):
         task = self.task_text.get("1.0", tk.END).strip()
