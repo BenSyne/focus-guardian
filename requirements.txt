@@ -1,7 +1,6 @@
 # Python libraries
 pyautogui
 requests
-subprocess32
 opencv-python
 python-dotenv
 
@@ -9,8 +8,8 @@ python-dotenv
 openai
 
 # GUI libraries
-tkinter
 ttkthemes
+tkinter
 
 # Data processing and visualization
 matplotlib
@@ -20,3 +19,4 @@ Pillow
 
 # Other utilities
 pytz
+py2app
